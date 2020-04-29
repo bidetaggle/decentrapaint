@@ -55,7 +55,10 @@ function Login(props) {
     return (
       <section>
         <div style={{float: 'left'}}>
-          <CirclePicker onChangeComplete={props.pickColor} />
+          <div style={{paddingBottom: 20}}>
+            <CirclePicker onChangeComplete={props.pickColor} />
+          </div>
+          <input style={{width: '100%'}} onChange={props.pickColor} value={props.currentColor} type="color" />
         </div>
         <ul>
           <li>Address: <span style={{fontFamily: 'monospace'}}>{props.user.address}</span></li>

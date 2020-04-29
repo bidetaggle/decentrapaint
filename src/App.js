@@ -69,16 +69,16 @@ function App() {
 
       const response = await stateArweave.transactions.post(transaction);
       if(response.status === 200)
-        setAppData([...stateAppData, {x: x, y: y, color: stateColor}])
+        setAppData([{x: x, y: y, color: stateColor}, ...stateAppData])
       else
         alert(`something wrong happened when sending the transaction: Error ${response.status}`)
       setWait(false)
     }
-
   }
 
-  const handlePickingColor = color => {
-    setColor(color.hex)
+  const handlePickingColor = input => {
+    let color = input.hex ? input.hex : input.target.value
+    setColor(color)
   }
 
   return (
@@ -91,6 +91,7 @@ function App() {
         setUser={setUser}
         arweave={stateArweave}
         pickColor={handlePickingColor}
+        currentColor={stateColor}
       />
       <section>
         {stateLoading && <div>loading painting board</div>}
